@@ -1,1 +1,6 @@
 /target/
+/logs/
+/reports/
+/screenshots/
+/test-output/
+/.settings/
