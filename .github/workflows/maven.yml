@@ -10,7 +10,7 @@ on:
         type: choice
         options:
           - testng.xml
-          - dataDrivenTestng.xml
+          - testngdatadriven.xml
 
       browser:
         description: 'Select Browser'
