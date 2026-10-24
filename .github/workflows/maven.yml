@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: '30 23 * * *'
 
+  push:
+    branches: ["master"]
+
   pull_request:
     branches: ["master"]
 
@@ -38,4 +41,3 @@ jobs:
         with:
           name: Test reports
           path: reports/reports.html
-     
