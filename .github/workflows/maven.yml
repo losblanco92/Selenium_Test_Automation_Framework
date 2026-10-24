@@ -1,6 +1,45 @@
 name: Selenium Test Automation Workflow
 
 on:
+  workflow_dispatch:
+    inputs:
+      suiteXmlFile:
+        description: 'Select TestNG Suite XML File'
+        required: true
+        default: 'testng.xml'
+        type: choice
+        options:
+          - testng.xml
+          - dataDrivenTestng.xml
+
+      browser:
+        description: 'Select Browser'
+        required: true
+        default: 'chrome'
+        type: choice
+        options:
+          - chrome
+          - firefox
+          - edge
+
+      isLambdaTest:
+        description: 'Run Tests on LambdaTest'
+        required: true
+        default: 'true'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+      isHeadless:
+        description: 'Run Tests in Headless Mode'
+        required: true
+        default: 'true'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
   schedule:
     - cron: '30 23 * * *'
 
@@ -25,7 +64,12 @@ jobs:
           cache: maven
 
       - name: Running test automation framework with Maven
-        run: mvn test -DsuiteXmlFile=testng.xml -Dbrowser=chrome -DisLambdaTest=true -DisHeadless=true
+        run: |
+          mvn test \
+            -DsuiteXmlFile="${{ inputs.suiteXmlFile || 'testng.xml' }}" \
+            -Dbrowser="${{ inputs.browser || 'chrome' }}" \
+            -DisLambdaTest="${{ inputs.isLambdaTest || 'true' }}" \
+            -DisHeadless="${{ inputs.isHeadless || 'true' }}"
 
       - name: Upload test logs
         if: always()
@@ -41,3 +85,4 @@ jobs:
         with:
           name: Test reports
           path: reports/reports.html
+       
