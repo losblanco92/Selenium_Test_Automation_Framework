@@ -1,4 +1,3 @@
-
 name: Selenium Test Automation Workflow
 
 on:
@@ -84,29 +83,27 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-screenshots
-          path:
-            reports/
+          name: test-reports
+          path: reports/
 
       - name: Upload test screenshots
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: test-screenshots
-          path:
-            screenshots/
+          path: screenshots/
 
       - name: Copy report to gh-pages folder
         if: always()
         run: |
-          mkdir -p public extent-reports
-          cp -R repots/ public/extent-reports/
-          cp -R screenshots/ public/extent-reports-screenshots/
+          mkdir -p public/extent-reports public/extent-reports-screenshots
+          cp -R reports/. public/extent-reports/
+          cp -R screenshots/. public/extent-reports-screenshots/
 
-      - name: Deploy to GitHub Pages
+      - name: Creating GitHub Pages branch
         if: always()
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: peaceiris/actions-gh-pages@v4.1.0
         with:
-          folder: public/extent-reports/
-          token: ${{ secrets.PAT }}
-          clean: true
+          publish_dir: public
+          personal_token: ${{ secrets.PAT }}
+          force_orphan: true
