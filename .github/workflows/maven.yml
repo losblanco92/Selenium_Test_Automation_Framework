@@ -100,6 +100,10 @@ jobs:
           cp -R reports/. public/extent-reports/
           cp -R screenshots/. public/extent-reports/screenshots/
 
+      - name: Redirect GitHub Pages to Extent Report
+        run: |
+          echo '<meta http-equiv="refresh" content="0; url=extent-reports/report.html">' > public/index.html
+
       - name: Creating GitHub Pages branch
         if: always()
         uses: peaceiris/actions-gh-pages@v4.1.0
