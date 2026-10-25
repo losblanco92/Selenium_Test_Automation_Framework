@@ -7,7 +7,6 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.ui.dataProvider.DataProviderUtil;
-import com.ui.pages.HomePage;
 import com.ui.pojo.User;
 import com.ui.test.TestBase;
 import com.utility.LoggerUtility;
@@ -15,7 +14,7 @@ import com.utility.LoggerUtility;
 import dataprovider.ui.bean.UserBean;
 
 @Listeners(com.ui.listeners.TestListener.class)
-public final class LoginTestWithDataProvider extends TestBase {
+public final class LoginWithDataProviderTest extends TestBase {
 
 	Logger logger= LoggerUtility.getLogger(this.getClass());
 

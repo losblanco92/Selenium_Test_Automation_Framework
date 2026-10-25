@@ -1,7 +1,5 @@
 package com.ui.test;
 
-import static com.constants.Browser.*;
-
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
@@ -27,7 +25,7 @@ public abstract class TestBase {
 	@BeforeMethod(description = "Launches home page of the website")
 
 	public void setUp(@Optional("chrome") String browser, @Optional("false") boolean isLambdaTest,
-			@Optional("true") boolean isHeadless, ITestResult result) {
+			@Optional("false") boolean isHeadless, ITestResult result) {
 
 		this.isLambdaTest = isLambdaTest;
 		WebDriver lamddaDriver;

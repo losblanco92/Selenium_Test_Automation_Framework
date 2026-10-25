@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Data Driven Tests"  parallel="methods"  thread-count="8">
-  <test name="UI Automation Data Driven Test">
-    <classes>
-      <class name="com.ui.tests.datadriven.LoginTestWithDataProvider"/>
-    </classes>
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
