@@ -66,6 +66,7 @@ jobs:
 
       - name: Run Selenium tests
         run: |
+          echo "Selected suite: ${{ inputs.suiteXmlFile || 'testng.xml' }}"
           mvn clean test \
             -DsuiteXmlFile="${{ inputs.suiteXmlFile || 'testng.xml' }}" \
             -Dbrowser="${{ inputs.browser || 'chrome' }}" \
