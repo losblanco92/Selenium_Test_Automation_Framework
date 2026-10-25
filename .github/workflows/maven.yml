@@ -65,12 +65,10 @@ jobs:
           cache: maven
 
       - name: Run Selenium tests
-        env:
-          SUITE_XML: ${{ inputs.suiteXmlFile || 'testng.xml' }}
         run: |
-          echo "Running suite: $SUITE_XML"
+          echo "Selected suite: ${{ inputs.suiteXmlFile || 'testng.xml' }}"
           mvn clean test \
-            -DsuiteXmlFile="$SUITE_XML" \
+            -DsuiteXmlFile="${{ inputs.suiteXmlFile || 'testng.xml' }}" \
             -Dbrowser="${{ inputs.browser || 'chrome' }}" \
             -DisLambdaTest="${{ inputs.isLambdaTest || 'true' }}" \
             -DisHeadless="${{ inputs.isHeadless || 'true' }}"
