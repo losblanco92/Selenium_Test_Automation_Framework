@@ -10,7 +10,7 @@ on:
         default: 'testng.xml'
         options:
           - testng.xml
-           -testng-datadriven.xml
+          - testng-datadriven.xml
 
       browser:
         description: 'Select Browser'
@@ -54,7 +54,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -63,9 +64,9 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Running test automation framework with Maven
+      - name: Run Selenium tests
         run: |
-          mvn test \
+          mvn clean test \
             -DsuiteXmlFile="${{ inputs.suiteXmlFile || 'testng.xml' }}" \
             -Dbrowser="${{ inputs.browser || 'chrome' }}" \
             -DisLambdaTest="${{ inputs.isLambdaTest || 'true' }}" \
@@ -75,14 +76,18 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Test logs
+          name: test-logs
           path: logs/
-          if-no-files-found: ignore
+         
 
-      - name: Upload test reports
+      - name: Upload test reports and screenshots
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Test reports
-          path: reports/
-      
+          name: test-reports-and-screenshots
+          path: |
+            reports/
+            screenshots/
+         
+        
+
