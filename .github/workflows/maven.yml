@@ -1,0 +1,88 @@
+name: Selenium Test Automation Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      suiteXmlFile:
+        description: 'Select TestNG Suite XML File'
+        required: true
+        type: choice
+        default: 'testng.xml'
+        options:
+          - testng.xml
+           -testng-datadriven.xml
+
+      browser:
+        description: 'Select Browser'
+        required: true
+        type: choice
+        default: 'chrome'
+        options:
+          - chrome
+          - firefox
+          - edge
+
+      isLambdaTest:
+        description: 'Run Tests on LambdaTest'
+        required: true
+        type: choice
+        default: 'true'
+        options:
+          - 'true'
+          - 'false'
+
+      isHeadless:
+        description: 'Run Tests in Headless Mode'
+        required: true
+        type: choice
+        default: 'true'
+        options:
+          - 'true'
+          - 'false'
+
+  schedule:
+    - cron: '30 23 * * *'
+
+  push:
+    branches: ["master"]
+
+  pull_request:
+    branches: ["master"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Running test automation framework with Maven
+        run: |
+          mvn test \
+            -DsuiteXmlFile="${{ inputs.suiteXmlFile || 'testng.xml' }}" \
+            -Dbrowser="${{ inputs.browser || 'chrome' }}" \
+            -DisLambdaTest="${{ inputs.isLambdaTest || 'true' }}" \
+            -DisHeadless="${{ inputs.isHeadless || 'true' }}"
+
+      - name: Upload test logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Test logs
+          path: logs/
+          if-no-files-found: ignore
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Test reports
+          path: reports/
+      
