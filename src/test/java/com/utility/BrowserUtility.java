@@ -125,7 +125,7 @@ public abstract class BrowserUtility {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy_HH-mm-ss");
 		String timeStamp = dateFormat.format(date);
 
-		String path = System.getProperty("user.dir") + File.separator + "screenshots" + File.separator + fileName + "_"
+		String path = "./screenshots" + File.separator + fileName + "_"
 				+ timeStamp + ".png";
 
 		File screenShotFile = new File(path);
