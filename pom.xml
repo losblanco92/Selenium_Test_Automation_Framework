@@ -22,6 +22,7 @@
 					<suiteXmlFiles>
 						<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
 					</suiteXmlFiles>
+					<printSummary>true</printSummary>
 					<systemPropertyVariables>
 						<browser>chrome</browser>
 						<isLambdaTest>false</isLambdaTest>
