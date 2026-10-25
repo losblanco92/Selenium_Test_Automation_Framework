@@ -6,7 +6,7 @@
     <parameter name="isLambdaTest" value="${isLambdaTest}"></parameter>
      <parameter name="isHeadless" value="${isHeadless}"></parameter>
     <classes>
-      <class name="com.ui.tests.datadriven.LoginTestWithDataProvider"/>
+      <class name="com.ui.tests.datadriven.LoginWithDataProviderTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
