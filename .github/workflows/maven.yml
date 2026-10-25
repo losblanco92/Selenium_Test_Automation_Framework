@@ -96,9 +96,9 @@ jobs:
       - name: Copy report to gh-pages folder
         if: always()
         run: |
-          mkdir -p public/extent-reports public/extent-reports-screenshots
+          mkdir -p public/extent-reports/screenshots
           cp -R reports/. public/extent-reports/
-          cp -R screenshots/. public/extent-reports-screenshots/
+          cp -R screenshots/. public/extent-reports/screenshots/
 
       - name: Creating GitHub Pages branch
         if: always()
