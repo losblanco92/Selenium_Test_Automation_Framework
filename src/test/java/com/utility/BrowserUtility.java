@@ -68,6 +68,7 @@ public abstract class BrowserUtility {
 			if (isHeadless) {
 
 				EdgeOptions options = new EdgeOptions();
+				options.addArguments("--headless=new");
 				options.addArguments("--disable-gpu");
 				options.addArguments("--window-size=1920,1080");
 

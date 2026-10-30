@@ -25,7 +25,7 @@ public abstract class TestBase {
 	@BeforeMethod(description = "Launches home page of the website")
 
 	public void setUp(@Optional("chrome") String browser, @Optional("false") boolean isLambdaTest,
-			@Optional("false") boolean isHeadless, ITestResult result) {
+			@Optional("true") boolean isHeadless, ITestResult result) {
 
 		this.isLambdaTest = isLambdaTest;
 		WebDriver lamddaDriver;
@@ -49,7 +49,7 @@ public abstract class TestBase {
 		return homePage;
 	}
 
-	//@AfterMethod
+	@AfterMethod
 	public void tearDown() {
 		if (isLambdaTest) {
 
