@@ -5,9 +5,12 @@
   <parameter name="browser" value="${browser}"></parameter>
     <parameter name="isLambdaTest" value="${isLambdaTest}"></parameter>
      <parameter name="isHeadless" value="${isHeadless}"></parameter>
-
     <classes>
       <class name="com.ui.test.LoginTest"/>
+      <class name="com.ui.test.InvalidCredLoginTest"/>
+      <class name="com.ui.test.AddressPageTest"/>
+      <class name="com.ui.test.SearchProductTest"/>
+     <class name="com.ui.test.ProductCheckOutTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

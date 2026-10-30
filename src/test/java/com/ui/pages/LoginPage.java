@@ -10,13 +10,10 @@ public final class LoginPage extends BrowserUtility {
 		super(driver);
 	}
 
-
-
 	private static final By EMAIL_TEXT_BOX_LOCATOR = By.id("email");
 	private static final By PASSWORD_TEXT_BOX_LOCATOR = By.id("passwd");
 	private static final By SUBMIT_BTN_LOCATOR = By.id("SubmitLogin");
-
-	
+	private static final By ERROR_MSG_LOCATOR = By.xpath("//div[contains(@class,'alert-danger')]/ol/li");
 
 	public MyAccountPage doLoginWith(String email, String password) {
 
@@ -27,4 +24,14 @@ public final class LoginPage extends BrowserUtility {
 		return new MyAccountPage(getDriver());
 	}
 
+	
+	public String doLoginWithInvalidCredentails(String email, String password) {
+
+		enterText(EMAIL_TEXT_BOX_LOCATOR, email);
+		enterText(PASSWORD_TEXT_BOX_LOCATOR, password);
+		clickOn(SUBMIT_BTN_LOCATOR);
+
+		return getVisibleText(ERROR_MSG_LOCATOR);
+
+}
 }

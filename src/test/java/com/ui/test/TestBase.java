@@ -49,7 +49,7 @@ public abstract class TestBase {
 		return homePage;
 	}
 
-	@AfterMethod
+	//@AfterMethod
 	public void tearDown() {
 		if (isLambdaTest) {
 

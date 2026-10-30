@@ -22,11 +22,10 @@
 					<suiteXmlFiles>
 						<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
 					</suiteXmlFiles>
-					<printSummary>true</printSummary>
 					<systemPropertyVariables>
-						<browser>chrome</browser>
-						<isLambdaTest>false</isLambdaTest>
-						<isHeadless>false</isHeadless>
+						<browser>${browser}</browser>
+						<isLambdaTest>${isLambdaTest}</isLambdaTest>
+						<isHeadless>${isHeadless}</isHeadless>
 
 
 					</systemPropertyVariables>
@@ -92,12 +91,19 @@
 
 		</dependency>
 
-
 		<dependency>
 			<groupId>com.aventstack</groupId>
 			<artifactId>extentreports</artifactId>
 			<version>5.1.2</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+
+
 	</dependencies>
 
 
