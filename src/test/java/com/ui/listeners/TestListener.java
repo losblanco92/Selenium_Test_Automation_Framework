@@ -58,6 +58,12 @@ public class TestListener implements ITestListener {
 		logger.warn(result.getMethod().getMethodName() + " SKIPPED");
 		ExtentReporterUtility.getTest().log(Status.SKIP, result.getMethod().getMethodName() + " SKIPPED");
 
+        Object testClass= result.getInstance();
+		
+		BrowserUtility browserUtility= ((TestBase)testClass).getInstance();
+		String path= browserUtility.takeScreenShot(result.getMethod().getMethodName());
+		ExtentReporterUtility.getTest().addScreenCaptureFromPath(path);
+	
 	}
 
 	public void onStart(ITestContext context) {
